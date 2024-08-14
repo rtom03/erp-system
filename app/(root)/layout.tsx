@@ -11,8 +11,7 @@ export default async function RootLayout({
 }>) {
     return (
         <div>
-            <AuthForm />
-            {/* <Navbar /> */}
+            <Navbar />
             {children}
         </div>
     )

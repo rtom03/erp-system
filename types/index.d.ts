@@ -23,7 +23,7 @@ declare type User = {
 }
 
 declare interface NavbarProps {
-    user: User
+    user?: User
 }
 
 interface FormProps {

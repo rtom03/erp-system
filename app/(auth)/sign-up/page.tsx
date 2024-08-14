@@ -1,9 +1,10 @@
+import { FormValidate } from '@/components/FormValidate'
 import React from 'react'
 
 const SignUp = () => {
     return (
         <div>
-            <h1>Sign Up</h1>
+            <FormValidate type='sign-up' />
         </div>
     )
 }

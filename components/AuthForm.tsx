@@ -12,12 +12,11 @@ export default function AuthForm() {
             <section className="remove-scrollbar container">
 
                 <div className='sub-container max-w-[496] mt-32'>
-
                     <FormValidate type={'sign-in'} />
                 </div>
             </section>
             <Image
-                src="/icons/prof.jpeg"
+                src="/icons/on.png"
                 height={1000}
                 width={1000}
                 alt="patient"

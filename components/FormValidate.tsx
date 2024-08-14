@@ -63,7 +63,7 @@ export const FormValidate = ({ type }: AuthProps) => {
                     )}
 
                 </div>
-                <ClickButton isLoading={true}>Get Stated</ClickButton>
+                <ClickButton isLoading={false}>Get Stated</ClickButton>
 
 
 

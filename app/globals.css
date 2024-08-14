@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -93,6 +95,14 @@
     /* background: #1e2238; */
     background: transparent;
   }
+}
+
+
+.concert-one-regular {
+  font-family: "Concert One";
+  font-size: 30px;
+  color: #00214f;
+  margin-top: -1px;
 }
 
 @layer utilities {
