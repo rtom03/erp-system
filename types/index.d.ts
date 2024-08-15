@@ -23,7 +23,7 @@ declare type User = {
 }
 
 declare interface NavbarProps {
-    user?: User
+    user?: boolean
 }
 
 interface FormProps {
@@ -38,7 +38,8 @@ interface FormProps {
     dateFormat?: string;
     disabled?: boolean
     showTimeSelect?: boolean;
-
+    dateFormat?: string,
+    showTimeSelect?: boolean,
 }
 
 interface ButtonProps {
