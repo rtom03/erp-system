@@ -11,14 +11,13 @@ import { cookies } from "next/headers"
 export const SignUp = async ({ password, ...userdata }: SIgnUpParams) => {
 
     const { firstName, lastName, email } = userdata
+    let newUser;
     try {
         const { account, database } = await createAdminClient()
-        const newUser = await account.create(
-            ID.unique(),
-            email,
-            password,
-            `${firstName}${lastName}`
+        newUser = await account.create(ID.unique(),
+            email, password, `${firstName} ${lastName}`
         );
+
         if (!newUser) throw new Error('Error: user already exist')
         const newUserAccount = await database.createDocument(
             DATABASE_ID!,
@@ -26,7 +25,6 @@ export const SignUp = async ({ password, ...userdata }: SIgnUpParams) => {
             ID.unique(),
             { ...userdata, userId: newUser.$id }
         )
-
         const session = await account.createEmailPasswordSession(email, password);
         cookies().set("appwrite-session", session.secret, {
             path: "/",
@@ -69,6 +67,8 @@ export const SignIn = async ({ email, password }: signInProps) => {
         });
 
         const user = await getUserInfo({ userId: session.userId })
+
+        return parseStringify(user)
 
     } catch (error) {
         console.log(error)

@@ -55,19 +55,16 @@ export const FormValidate = ({ type }: AuthProps) => {
                 const newUser = await SignUp(userData)
                 setUser(newUser)
                 if (newUser)
-                    router.push('/')
+                    router.push('/sign-in')
             }
+
             if (type === 'sign-in') {
                 const response = await SignIn({
-                    email: data.email,
-                    password: data.password,
+                    email: data.email!,
+                    password: data.password!,
                 })
-                //@ts-ignore
                 if (response)
                     router.push('/')
-            }
-            else {
-                throw Error('not going through')
             }
         } catch (error) {
             console.log(error)

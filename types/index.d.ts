@@ -18,12 +18,11 @@ declare type User = {
     address: string;
     city: string;
     dateOfBirth: string;
-    password: string;
-    phone: string;
+    postalCode: string;
 }
 
 declare interface NavbarProps {
-    user: User
+    user?: User
 }
 
 declare interface SIgnUpParams {
