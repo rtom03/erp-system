@@ -23,7 +23,7 @@ declare type User = {
 }
 
 declare interface NavbarProps {
-    user?: boolean
+    user: User
 }
 
 declare interface SIgnUpParams {

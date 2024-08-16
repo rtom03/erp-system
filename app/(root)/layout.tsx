@@ -1,7 +1,7 @@
-'use client'
+'use server'
 import Navbar from '@/components/Navbar';
 import { getLoggedInUser } from '@/lib/actions/user.action';
-import { useRouter } from 'next/navigation';
+import { redirect } from 'next/navigation';
 import React, { ReactNode } from 'react'
 
 
@@ -13,17 +13,14 @@ export default async function RootLayout({
 
 }>) {
 
-    const router = useRouter()
 
     const user = false;
     const loggedIn = await getLoggedInUser()
     if (!loggedIn)
-        router.push('/sign-in')
-    if (!user)
-        router.push('/sign-in')
+        redirect('/sign-in')
     return (
         <div>
-            <Navbar />
+            <Navbar user={loggedIn} />
             {children}
         </div>
     )
