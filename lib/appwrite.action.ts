@@ -17,8 +17,8 @@ client
 
 export async function createSessionClient() {
     const client = new sdk.Client()
-        .setEndpoint(process.env.ENDPOINT!)
-        .setProject(process.env.APPWRITE_PROJECT!)
+        .setEndpoint(ENDPOINT!)
+        .setProject(APPWRITE_PROJECT!)
 
     const session = cookies().get('appwrite-session');
     if (!session || !session.value) {
