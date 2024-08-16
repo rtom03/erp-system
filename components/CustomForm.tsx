@@ -32,7 +32,7 @@ const RenderField = ({ field, props }: { field: any, props: FormProps }) => {
                         />
                     )}
                     <FormControl>
-                        <Input type={props.name === 'email' ? 'email' : 'password'} placeholder={props.placeholder} className='w-[500px]' />
+                        <Input type={props.name === 'email' ? 'email' : 'password'} {...field} placeholder={props.placeholder} className='w-[500px]' />
                     </FormControl>
                 </div>
             )
@@ -41,7 +41,7 @@ const RenderField = ({ field, props }: { field: any, props: FormProps }) => {
             return (
                 <FormControl>
                     <div>
-                        <Input type='text' placeholder={props.placeholder} className='w-60 outline-none' />
+                        <Input type='text' placeholder={props.placeholder} {...field} className='w-60 outline-none' />
                     </div>
                 </FormControl>
 

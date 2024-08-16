@@ -26,6 +26,17 @@ declare interface NavbarProps {
     user?: boolean
 }
 
+declare interface SIgnUpParams {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    address: string;
+    city: string;
+    postalCode: string | undefined;
+    dateOfBirth: string | undefined;
+}
+
 interface FormProps {
     control: Control<any>;
     name: string;
@@ -49,4 +60,14 @@ interface ButtonProps {
 
 interface AuthProps {
     type: string;
+}
+
+declare interface signInProps {
+    email: string;
+    password: string;
+}
+
+
+declare interface getUserInfoProps {
+    userId: string;
 }

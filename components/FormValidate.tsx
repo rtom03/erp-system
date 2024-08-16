@@ -14,30 +14,68 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { FormFieldType, formSchema } from "../app/lib/utils"
+import { authFormSchema, FormFieldType } from "../app/lib/utils"
 import CustomForm from "./CustomForm"
 import Image from "next/image"
 import prof from '@/public/prof.svg'
 import ClickButton from "./ClickButton"
 import { AuthProps } from "@/types"
 import Link from "next/link"
+import { useState } from "react"
+import { SignIn, SignUp } from "@/app/lib/actions/user.action"
+import { useRouter } from "next/navigation"
 
 
 
 export const FormValidate = ({ type }: AuthProps) => {
+    const [loading, setLoading] = useState(false)
+    const [user, setUser] = useState()
+    const router = useRouter()
+    const formSchema = authFormSchema(type)
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            username: "",
+            email: "",
         },
     })
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-        console.log(values)
+    async function onSubmit(data: z.infer<typeof formSchema>) {
+        setLoading(true)
+        try {
+            const userData = {
+                firstName: data.firstName!,
+                lastName: data.lastName!,
+                address: data.address!,
+                city: data.city!,
+                postalCode: data.postalCode,
+                email: data.email!,
+                password: data.password!,
+                dateOfBirth: data.dateOfBirth
+            }
+            if (type === 'sign-up') {
+                const newUser = await SignUp(userData)
+                setUser(newUser)
+                if (newUser)
+                    router.push('/')
+            }
+            if (type === 'sign-in') {
+                const response = await SignIn({
+                    email: data.email,
+                    password: data.password,
+                })
+                //@ts-ignore
+                if (response)
+                    router.push('/')
+            }
+            else {
+                throw Error('not going through')
+            }
+        } catch (error) {
+            console.log(error)
+        }
+        setLoading(false)
     }
 
-    const user = true;
+
 
     return (
         <Form {...form} >
@@ -102,13 +140,13 @@ export const FormValidate = ({ type }: AuthProps) => {
                             </div>
                         </>
                     )}
-                    <CustomForm
+                    {/* <CustomForm
                         fieldtype={FormFieldType.PHONE_INPUT}
                         name='phone'
                         control={form.control}
                         label="Phone Number"
                         placeholder="(9016) 672 168"
-                    />
+                    /> */}
                     <CustomForm
                         name='email'
                         control={form.control}
@@ -126,7 +164,7 @@ export const FormValidate = ({ type }: AuthProps) => {
                     />
 
                 </div>
-                <ClickButton isLoading={false}> Get Stated</ClickButton>
+                <ClickButton isLoading={loading}> Get Stated</ClickButton>
                 <footer>
                     <p>
                         {type === 'sign-in' ? 'Dont have an account?' : 'Already have an account!'}&nbsp;
