@@ -8,7 +8,7 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
-import { FormFieldType } from '../app/lib/utils'
+import { FormFieldType } from '../lib/utils'
 import { Input } from './ui/input'
 import { FormProps } from '@/types'
 import Image from 'next/image'

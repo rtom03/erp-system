@@ -1,7 +1,4 @@
-
-
 import Image from "next/image";
-import Link from "next/link";
 import { FormValidate } from "./FormValidate";
 
 export default function AuthForm() {

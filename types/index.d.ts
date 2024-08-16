@@ -1,4 +1,4 @@
-import { FormFieldType } from "../app/lib/utils";
+import { FormFieldType } from "../lib/utils";
 
 declare interface HeaderBoxProps {
     title: string,

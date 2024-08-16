@@ -14,7 +14,7 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { authFormSchema, FormFieldType } from "../app/lib/utils"
+import { authFormSchema, FormFieldType } from "../lib/utils"
 import CustomForm from "./CustomForm"
 import Image from "next/image"
 import prof from '@/public/prof.svg'
@@ -22,7 +22,7 @@ import ClickButton from "./ClickButton"
 import { AuthProps } from "@/types"
 import Link from "next/link"
 import { useState } from "react"
-import { SignIn, SignUp } from "@/app/lib/actions/user.action"
+import { SignIn, SignUp } from "@/lib/actions/user.action"
 import { useRouter } from "next/navigation"
 
 

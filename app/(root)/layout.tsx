@@ -1,9 +1,9 @@
 'use client'
-import AuthForm from '@/components/AuthForm';
 import Navbar from '@/components/Navbar';
+import { getLoggedInUser } from '@/lib/actions/user.action';
 import { useRouter } from 'next/navigation';
 import React, { ReactNode } from 'react'
-import { getLoggedInUser } from '../lib/actions/user.action';
+
 
 
 export default async function RootLayout({

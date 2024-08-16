@@ -1,7 +1,6 @@
 import { ButtonProps } from '@/types'
 import React, { useState } from 'react'
 import { Button } from './ui/button'
-import { Loader2 } from 'lucide-react'
 import Image from 'next/image'
 
 const ClickButton = ({ children, isLoading }: ButtonProps) => {

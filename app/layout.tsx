@@ -29,4 +29,4 @@ export default function RootLayout({
       <body className={`${inter.variable} ${ibmPlexSerif.variable}`}>{children}</body>
     </html>
   );
-}
+} 
