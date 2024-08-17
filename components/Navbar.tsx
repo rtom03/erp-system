@@ -71,12 +71,12 @@ const Navbar = ({ user }: NavbarProps) => {
         })}
 
         <div className='flex flex-row gap-5 mr-36'>
+          <Menubar className='border-none'>
+            <MenubarMenu >
+              {profileNav.map((item) => {
+                const isActive = pathname === item.route || pathname?.startsWith(`${item.route}/`)
+                return (
 
-          {profileNav.map((item) => {
-            const isActive = pathname === item.route || pathname?.startsWith(`${item.route}/`)
-            return (
-              <Menubar className='border-none'>
-                <MenubarMenu >
                   <Link href={item.route}
                     key={item.label}>
                     <MenubarTrigger>
@@ -109,11 +109,10 @@ const Navbar = ({ user }: NavbarProps) => {
                     </MenubarContent>
                   </Link>
 
-                </MenubarMenu>
-              </Menubar>
-            )
-          })}
-
+                )
+              })}
+            </MenubarMenu>
+          </Menubar>
           <div>
             <Link href='/post/employer' >
               <h2 className=' border-l-2 p-2'>Employers/Post a Job</h2></Link>
@@ -123,5 +122,4 @@ const Navbar = ({ user }: NavbarProps) => {
     </div>
   )
 }
-
 export default Navbar
