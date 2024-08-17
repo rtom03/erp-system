@@ -37,6 +37,22 @@ const RenderField = ({ field, props }: { field: any, props: FormProps }) => {
                     </FormControl>
                 </div>
             )
+        case FormFieldType.TEXT:
+            return (
+                <div>
+                    {props.iconSrc && (
+                        <Image
+                            src={props.iconSrc}
+                            alt='circle'
+                            width={30}
+                            height={30}
+                        />
+                    )}
+                    <FormControl>
+                        <Input type='text' {...field} placeholder={props.placeholder} className='w-[280px]' />
+                    </FormControl>
+                </div>
+            )
 
         case FormFieldType.OTHER:
             return (
