@@ -41,6 +41,7 @@ interface FormProps {
     name: string;
     fieldtype: FormFieldType;
     label: string;
+    sublabel?: string;
     placeholder?: string;
     renderSkeleton?: (field: any) => React.ReactNode
     iconSrc?: string;
@@ -55,6 +56,8 @@ interface FormProps {
 interface ButtonProps {
     children: React.ReactNode;
     isLoading: boolean;
+    className?: string
+    type?: string
 }
 
 interface AuthProps {
@@ -66,7 +69,23 @@ declare interface signInProps {
     password: string;
 }
 
-
 declare interface getUserInfoProps {
     userId: string;
+}
+
+
+declare interface CompanyAuthProps {
+    companyName: string;
+    heardOfUs?: string;
+    name: string;
+    companyLength: string;
+    phone: string;
+}
+
+declare interface CompanyTypeProps {
+    type: string
+}
+
+declare interface ProfileNav {
+    type: string;
 }

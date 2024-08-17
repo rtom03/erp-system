@@ -1,10 +1,11 @@
-import HeaderBox from '@/components/HeaderBox'
 import React from 'react'
+import HeaderBox from '@/components/HeaderBox'
+import UserProfile from '@/components/UserProfile'
 
 const Profile = () => {
     return (
-        <div>
-            <HeaderBox title='Profile' />
+        <div className='ml-40'>
+            <UserProfile type='profile' />
         </div>
     )
 }

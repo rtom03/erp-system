@@ -16,6 +16,7 @@ import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Select, SelectContent, SelectTrigger, SelectValue } from './ui/select'
 
 
 const RenderField = ({ field, props }: { field: any, props: FormProps }) => {
@@ -32,17 +33,17 @@ const RenderField = ({ field, props }: { field: any, props: FormProps }) => {
                         />
                     )}
                     <FormControl>
-                        <Input type={props.name === 'email' ? 'email' : 'password'} {...field} placeholder={props.placeholder} className='w-[500px]' />
+                        <Input type={props.name === 'email' ? 'email' : 'password'} {...field} placeholder={props.placeholder} className={props.name === 'text' ? 'w-[280px]' : 'w-[600px]'} />
                     </FormControl>
                 </div>
             )
 
-        case FormFieldType.TEXT:
+        case FormFieldType.OTHER:
             return (
                 <FormControl>
-                    <div>
-                        <Input type='text' placeholder={props.placeholder} {...field} className='w-60 outline-none' />
-                    </div>
+
+                    <Input type='text' placeholder={props.placeholder} {...field} className='w-[800px]' />
+
                 </FormControl>
 
             )
@@ -74,6 +75,25 @@ const RenderField = ({ field, props }: { field: any, props: FormProps }) => {
                     />
                 </FormControl>
             )
+
+        case FormFieldType.SELECT:
+            return (
+                <FormControl>
+                    <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}>
+                        <FormControl>
+                            <SelectTrigger className='w-[800px]'>
+                                <SelectValue placeholder={props.placeholder} />
+                            </SelectTrigger>
+                        </FormControl>
+                        <SelectContent >
+                            {props.children}
+                        </SelectContent>
+
+                    </Select>
+                </FormControl>
+            )
     }
 }
 
@@ -86,7 +106,9 @@ const CustomForm = (props: FormProps) => {
                 render={({ field }) => (
                     <FormItem >
                         {props.fieldtype !== FormFieldType.CHECKBOX && props.label && (
-                            <FormLabel>{props.label}</FormLabel>
+                            <FormLabel>{props.label}
+                                <FormDescription>{props.sublabel}</FormDescription>
+                            </FormLabel>
                         )}
                         <RenderField field={field} props={props} />
                         <FormMessage />

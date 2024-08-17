@@ -4,6 +4,7 @@ import * as sdk from 'node-appwrite'
 export const {
     APPWRITE_PROJECT, API_KEY, DATABASE_ID,
     USER_COLLECTION_ID,
+    COMPANY_COLLECTION,
     NEXT_PUBLIC_BUCKET_ID: BUCKET_ID,
     NEXT_PUBLIC_ENDPOINT: ENDPOINT
 } = process.env
@@ -31,7 +32,6 @@ export async function createSessionClient() {
         }
     }
 }
-
 
 export async function createAdminClient() {
     const client = new sdk.Client()

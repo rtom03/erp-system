@@ -29,6 +29,18 @@ export const authFormSchema = (type: string) => z.object({
   password: z.string().min(8)
 })
 
+export const authCompany = (type: string) => z.object({
+  name: z.string().min(2, {
+    message: "name must be at least 4 characters.",
+  }),
+  companyName: z.string().min(2, {
+    message: "company's name must be at least 3 characters.",
+  }),
+  heardOfUs: z.string().optional(),
+  companyLength: z.string().optional(),
+  phone: z.string().refine((phone) => /^\+\d{10,15}$/.test(phone), "Invalid phone number"),
+})
+
 
 export enum FormFieldType {
   INPUT = 'input',
@@ -39,5 +51,6 @@ export enum FormFieldType {
   SELECT = 'select',
   SKELETON = 'skeleton',
   TEXT = 'text',
-  DATE_PICKER = 'datePicker'
+  DATE_PICKER = 'datePicker',
+  OTHER = 'other'
 }

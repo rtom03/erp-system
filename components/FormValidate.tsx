@@ -72,8 +72,6 @@ export const FormValidate = ({ type }: AuthProps) => {
         setLoading(false)
     }
 
-
-
     return (
         <Form {...form} >
             <form onSubmit={form.handleSubmit(onSubmit)} className="flex  flex-col justify-center items-center mt-20 ">
@@ -88,62 +86,55 @@ export const FormValidate = ({ type }: AuthProps) => {
                         <>
                             <div className="flex flex-row  justify-between">
                                 <CustomForm
-                                    name='firstName'
+                                    name='text'
                                     control={form.control}
-                                    fieldtype={FormFieldType.TEXT}
+                                    fieldtype={FormFieldType.INPUT}
                                     label="First Name"
                                     placeholder="your first name"
                                 />
                                 <CustomForm
-                                    name='lastName'
+                                    name='text'
                                     control={form.control}
-                                    fieldtype={FormFieldType.TEXT}
+                                    fieldtype={FormFieldType.INPUT}
                                     label="Last Name"
                                     placeholder="your last name"
                                 />
                             </div>
                             <div className="flex flex-row  justify-between">
                                 <CustomForm
-                                    name='city'
+                                    name='text'
                                     control={form.control}
-                                    fieldtype={FormFieldType.TEXT}
+                                    fieldtype={FormFieldType.INPUT}
                                     label="City"
                                     placeholder="your city"
                                 />
                                 <CustomForm
-                                    name='address'
+                                    name='text'
                                     control={form.control}
-                                    fieldtype={FormFieldType.TEXT}
+                                    fieldtype={FormFieldType.INPUT}
                                     label="Address"
                                     placeholder="your full address"
                                 />
                             </div>
 
-                            <div className="flex flex-row  justify-between">
+                            <div className="flex flex-row  gap-5 justify-between">
                                 <CustomForm
-                                    name='dateOfBirth'
+                                    name='text'
                                     control={form.control}
-                                    fieldtype={FormFieldType.TEXT}
+                                    fieldtype={FormFieldType.INPUT}
                                     label="Data Of Birth"
                                     placeholder="YYYY-MM-DD"
                                 />
                                 <CustomForm
-                                    name='postalCode'
+                                    name='text'
                                     control={form.control}
-                                    fieldtype={FormFieldType.TEXT}
+                                    fieldtype={FormFieldType.INPUT}
                                     label="Postal Code"
                                     placeholder="10001"
                                 />
                             </div>
                         </>
                     )}
-                    {/* <CustomForm
-                        fieldtype={FormFieldType.PHONE_INPUT}
-                        name='phone'
-                        control={form.control}
-                        label="Phone Number"
-                        placeholder="(9016) 672 168"
-                    /> */}
                     <CustomForm
                         name='email'
                         control={form.control}
@@ -161,8 +152,8 @@ export const FormValidate = ({ type }: AuthProps) => {
                     />
 
                 </div>
-                <ClickButton isLoading={loading}> Get Stated</ClickButton>
-                <footer>
+                <ClickButton isLoading={loading}>{type === 'sign-in' ? 'Sign in' : 'Sign up'}</ClickButton>
+                <footer className="mt-2">
                     <p>
                         {type === 'sign-in' ? 'Dont have an account?' : 'Already have an account!'}&nbsp;
                         <Link href={type === 'sign-in' ? '/sign-up' : '/sign-in'} className="text-sky-500">

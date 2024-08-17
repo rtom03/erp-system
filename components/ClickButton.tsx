@@ -3,11 +3,11 @@ import React, { useState } from 'react'
 import { Button } from './ui/button'
 import Image from 'next/image'
 
-const ClickButton = ({ children, isLoading }: ButtonProps) => {
+const ClickButton = ({ children, isLoading, type }: ButtonProps) => {
 
     return (
         <div className='mt-10'>
-            <Button type='submit' disabled={isLoading} className='w-[500px]'>
+            <Button type='submit' disabled={isLoading} className={type === 'company' ? 'w-[800px]' : 'w-[600px]'}>
 
                 {isLoading ? (
 
