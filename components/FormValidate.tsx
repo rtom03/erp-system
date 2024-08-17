@@ -86,32 +86,32 @@ export const FormValidate = ({ type }: AuthProps) => {
                         <>
                             <div className="flex flex-row  justify-between">
                                 <CustomForm
-                                    name='text'
+                                    name='firstName'
                                     control={form.control}
-                                    fieldtype={FormFieldType.INPUT}
+                                    fieldtype={FormFieldType.TEXT}
                                     label="First Name"
                                     placeholder="your first name"
                                 />
                                 <CustomForm
-                                    name='text'
+                                    name='lastName'
                                     control={form.control}
-                                    fieldtype={FormFieldType.INPUT}
+                                    fieldtype={FormFieldType.TEXT}
                                     label="Last Name"
                                     placeholder="your last name"
                                 />
                             </div>
                             <div className="flex flex-row  justify-between">
                                 <CustomForm
-                                    name='text'
+                                    name='city'
                                     control={form.control}
-                                    fieldtype={FormFieldType.INPUT}
+                                    fieldtype={FormFieldType.TEXT}
                                     label="City"
                                     placeholder="your city"
                                 />
                                 <CustomForm
-                                    name='text'
+                                    name='address'
                                     control={form.control}
-                                    fieldtype={FormFieldType.INPUT}
+                                    fieldtype={FormFieldType.TEXT}
                                     label="Address"
                                     placeholder="your full address"
                                 />
@@ -119,16 +119,16 @@ export const FormValidate = ({ type }: AuthProps) => {
 
                             <div className="flex flex-row  gap-5 justify-between">
                                 <CustomForm
-                                    name='text'
+                                    name='dateOfBirth'
                                     control={form.control}
-                                    fieldtype={FormFieldType.INPUT}
+                                    fieldtype={FormFieldType.TEXT}
                                     label="Data Of Birth"
                                     placeholder="YYYY-MM-DD"
                                 />
                                 <CustomForm
-                                    name='text'
+                                    name='postalCode'
                                     control={form.control}
-                                    fieldtype={FormFieldType.INPUT}
+                                    fieldtype={FormFieldType.TEXT}
                                     label="Postal Code"
                                     placeholder="10001"
                                 />
