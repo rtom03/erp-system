@@ -74,12 +74,12 @@ export const FormValidate = ({ type }: AuthProps) => {
 
     return (
         <Form {...form} >
-            <form onSubmit={form.handleSubmit(onSubmit)} className="flex  flex-col justify-center items-center mt-20 ">
-                <div className="flex flex-col gap-6">
-                    <h1 className=" text-3xl">Hi there 👋</h1>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="flex  flex-col justify-center items-center mt-10">
+                <div className="flex flex-col">
                     {type === 'sign-in' && (
+                        
                         <>
-                            <h1 className=" text-3xl">Welcome back 😊 </h1>
+                         <h1 className=" flex justify-center mb-6 text-3xl">Welcome back </h1>
                         </>
                     )}
                     {type === 'sign-up' && (
@@ -116,7 +116,6 @@ export const FormValidate = ({ type }: AuthProps) => {
                                     placeholder="your full address"
                                 />
                             </div>
-
                             <div className="flex flex-row  gap-5 justify-between">
                                 <CustomForm
                                     name='dateOfBirth'
@@ -141,7 +140,6 @@ export const FormValidate = ({ type }: AuthProps) => {
                         fieldtype={FormFieldType.INPUT}
                         label="Email"
                         placeholder="enter your email address"
-
                     />
                     <CustomForm
                         name='password'
@@ -150,7 +148,6 @@ export const FormValidate = ({ type }: AuthProps) => {
                         label="Password"
                         placeholder="enter your password"
                     />
-
                 </div>
                 <ClickButton isLoading={loading}>{type === 'sign-in' ? 'Sign in' : 'Sign up'}</ClickButton>
                 <footer className="mt-2">

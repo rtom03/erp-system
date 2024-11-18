@@ -7,8 +7,7 @@ export default function AuthForm() {
             {/* {TODO: OTP VERIFICATION} */}
 
             <section className="remove-scrollbar container">
-
-                <div className='sub-container max-w-[496] mt-32'>
+                <div className=' max-w-[496] mt-32'>
                     <FormValidate type={'sign-in'} />
                 </div>
             </section>
