@@ -9,35 +9,42 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+from os import getenv,path
 from pathlib import Path
+import dotenv
+from django.core.management.utils import get_random_secret_key
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+dotenv_file = BASE_DIR /'.env.local'
 
+if path.isfile(dotenv_file):
+     dotenv.load_dotenv(dotenv_file)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)lo#06@a^fm%yh&p=-j$w*(xqdo5f-9!r^q2k%+821wqmmwm9u'
-
+# SECRET_KEY = 'django-insecure-)lo#06@a^fm%yh&p=-j$w*(xqdo5f-9!r^q2k%+821wqmmwm9u'
+SECRET_KEY = getenv("DJANGO_SECRET_KEY",get_random_secret_key)
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = getenv("DEBUG",'False') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = getenv('DJANGO_ALLOWED_HOSTS','127.0.0.1,localhost').split(',')
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'djoser',
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -81,6 +88,16 @@ DATABASES = {
     }
 }
 
+# EMAIL SETTINGS
+EMAIL_BACKEND = 'djangoses.SESBackend'
+DEFAULT_FROM_EMAIL = getenv('DEFAULT_FROM_EMAIL')
+AWS_SES_ACCESS_KEY_ID= getenv('AWS_SES_ACCESS_KEY_ID')
+AWS_SES_SECRET_ACCESS_KEY=getenv('AWS_SES_SECRET_ACCESS_KEY')
+AWS_SES_REGION_NAME=getenv('AWS_SES_REGION_NAME')
+AWS_SES_REGION_ENDPOINT=f'email.{AWS_SES_REGION_NAME}.amazonaws.com'
+AWS_SES_FROM_EMAIL = getenv('AWS_SES_FROM_EMAIL')
+USE_SES_V3 = True
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -117,8 +134,32 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR /'static'
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR /'media'
+
+DJOSER = {
+     'PASSWORD_RESET_CONFIRM_URL':'/username-reset/{uid}/{token}',
+     'ACTIVATION_URL':'/activate/{uid}/{token}',
+     'USER_CREATE_PASSWORD_RETYPE':'True',
+     'SEND_ACTIVATION_EMAIL':'True',
+     'TOKEN_MODEL':None
+}
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+     'DEFAULT_AUTHENTICATION_CLASSES':
+     [
+        'rest_framework_simplejwt.authentication.JWTAuthentication'
+        ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated'
+    ]
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL = "users.UserAccount"
